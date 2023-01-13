@@ -36,6 +36,12 @@ export default class CountPlugin extends Plugin {
 		);
 
 		this.registerEvent(
+			this.app.workspace.on("active-leaf-change", (leaf) => {
+				this.mdNumGenCache.clearAll();
+			})
+		);
+
+		this.registerEvent(
 			this.app.metadataCache.on("changed", () => {
 				this.resetCache();
 			})
